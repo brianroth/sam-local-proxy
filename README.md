@@ -2,6 +2,17 @@
 
 A thing that works as a proxy using AWS SAM local
 
+## Install
+To test the client_reports endpoint locally, use [sam local](https://github.com/awslabs/aws-sam-local):
+
+- Docker must be running on your system.
+- Node.js must be installed on your system.
+- Install or update sam local: `npm install -g aws-sam-local` or `npm update -g aws-sam-local`
+- Build the local lambda package: `npm install`
+
+## Running
+To start the local server, execute the following command
+
 ```
 sam local start-api
 ```
