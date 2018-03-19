@@ -1,0 +1,65 @@
+AWSTemplateFormatVersion : '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Reports Proxy Lamda
+
+Resources:
+
+  GetUsers:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: users_lambda_proxy/index.handler
+      Runtime: nodejs6.10
+      Environment:
+        Variables:
+          INTERNAL_API_ENDPOINT: https://reqres.in/api
+      Events:
+        Identity:
+          Type: Api
+          Properties:
+            Path: /users
+            Method: get
+
+  GetUser:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: users_lambda_proxy/index.handler
+      Runtime: nodejs6.10
+      Environment:
+        Variables:
+          INTERNAL_API_ENDPOINT: https://reqres.in/api
+      Events:
+        Identity:
+          Type: Api
+          Properties:
+            Path: /users/{id}
+            Method: get
+
+  DeleteUser:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: users_lambda_proxy/index.handler
+      Runtime: nodejs6.10
+      Environment:
+        Variables:
+          INTERNAL_API_ENDPOINT: https://reqres.in/api
+      Events:
+        Identity:
+          Type: Api
+          Properties:
+            Path: /users/{id}
+            Method: delete
+
+  CreateUser:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: users_lambda_proxy/index.handler
+      Runtime: nodejs6.10
+      Environment:
+        Variables:
+          INTERNAL_API_ENDPOINT: https://reqres.in/api
+      Events:
+        Identity:
+          Type: Api
+          Properties:
+            Path: /users
+            Method: post
